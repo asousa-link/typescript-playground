@@ -18,7 +18,9 @@ type InvestmentResult = {
     totalInterestEarned: number;
 };
 
-function calculateInvestment(data: InvestmentData): InvestmentResult[] | string {
+type CalculationResult = InvestmentResult[] | string; // string = error
+
+function calculateInvestment(data: InvestmentData): CalculationResult {
     const { initialAmount, annualContribution, expectedReturn, duration } = data;
 
     if (initialAmount < 0) {
@@ -56,7 +58,21 @@ function calculateInvestment(data: InvestmentData): InvestmentResult[] | string 
     return annualResults;
 }
 
-// function printResults(results) {}
+function printResults(results: CalculationResult) {
+    // if an error occurred
+    if (typeof results === "string") {
+        console.log(results);
+        return;
+    }
+
+    for (const yearEndResult of results) {
+        console.log(yearEndResult.year);
+        console.log(`Total: ${yearEndResult.totalAmount.toFixed(0)}`);
+        console.log(`Total contributions: ${yearEndResult.totalContributions.toFixed(0)}`);
+        console.log(`Total interest earned: ${yearEndResult.totalInterestEarned.toFixed(0)}`);
+        console.log(`--------------------`);
+    }
+}
 
 // const results = calculateInvestment(...);
 
