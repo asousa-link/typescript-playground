@@ -9,3 +9,7 @@ type UserT = {
     age: number;
     role?: 'admin' | 'guest'
 }
+
+let input = "";
+const inputNotNull = input ?? false;
+const inputNotFalsy = input || false;
