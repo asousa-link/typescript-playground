@@ -23,3 +23,20 @@ function performJob(callback: (m: string) => void) {
 }
 
 performJob(log);
+
+type User = {
+    name: string;
+    age: number;
+    greet: () => string;
+}
+
+let user: User = {
+    name: "Afonso",
+    age: 31,
+    greet() {
+        console.log("Hello!");
+        return this.name;
+    }
+}
+
+user.greet();
