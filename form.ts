@@ -1,4 +1,4 @@
-const inputEl = document.getElementById('user-name');
+const inputEl = document.getElementById('user-name') as HTMLInputElement;
 
 // must account for null (type narrowing)
 // if (!inputEl) {
