@@ -1,4 +1,4 @@
-enum Role {
+/* enum Role {
     Admin,
     Editor,
     Guest
@@ -12,8 +12,22 @@ enum Role2 {
     Editor = 'Editor',
     Guest = 'Guest'
 }
+*/
 
 // Alternative
-let userRoleLiteralTypes: "Admin" | "Editor" | "Guest";
+let userRoleLit: "Admin" | "Editor" | "Guest";
 
-userRoleLiteralTypes = "Admin";
+userRoleLit = "Admin";
+
+type Role = "Admin" | "Editor" | "Guest" | "Reader";
+
+let userRole: Role;
+
+function access(role: Role) { }
+
+type User = {
+    name: string;
+    age: number;
+    role: Role;
+    permissions: string[];
+};
