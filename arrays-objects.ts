@@ -7,7 +7,7 @@ let users: Array<string | number>;
 
 users = [5, "1"];
 
-let possibleResults: [number, number];
+let possibleResults: [1 | -1, 1 | -1];
 
 possibleResults = [1, -1];
 possibleResults = [5, 10, 12];

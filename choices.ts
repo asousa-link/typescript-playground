@@ -12,3 +12,8 @@ enum Role2 {
     Editor = 'Editor',
     Guest = 'Guest'
 }
+
+// Alternative
+let userRoleLiteralTypes: "Admin" | "Editor" | "Guest";
+
+userRoleLiteralTypes = "Admin";
