@@ -21,3 +21,17 @@ function loadData(settings: Settings) {
 }
 
 loadData(settings);
+
+function sum(a: number, b: number) {
+    return a + b;
+}
+function subtract(a: number, b: number) {
+    return a - b;
+}
+
+function performMathAction(cb: typeof sum | typeof subtract) {
+    //...
+}
+
+performMathAction(sum);
+performMathAction(subtract);
