@@ -9,7 +9,7 @@
 } */
 
 // Alternative
-class User {
+class BasicUser {
     readonly hobbies: string[] = [];
 
     constructor (private name: string, public age: number) {}
@@ -19,8 +19,8 @@ class User {
     }
 };
 
-const afonso = new User("Afonso", 31);
-const fred = new User("Fred", 35);
+const afonso = new BasicUser("Afonso", 31);
+const fred = new BasicUser("Fred", 35);
 
 console.log(afonso, fred);
 
