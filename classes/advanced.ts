@@ -19,7 +19,17 @@ class User2 {
     get fullName() {
         return this._firstName + ' ' + this._lastName;
     }
+
+    static eid = "USER";
+
+    static greet() {
+        console.log("Hello!");
+    }
+
 }
+
+console.log(User2.eid);
+User2.greet();
 
 const afonso2 = new User2();
 afonso2.firstName = "Afonso";
