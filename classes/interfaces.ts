@@ -11,6 +11,19 @@ interface Authenticatable {
     role: string;
 }
 
+class AuthenticatableUser extends User implements Authenticatable {
+
+    public role;
+
+    constructor (public email: string, public password: string) {
+        super();
+        this.role = "User";
+    }
+
+    login() {}
+    logout() {}
+}
+
 let user: Authenticatable;
 
 user = {
