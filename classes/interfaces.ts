@@ -11,17 +11,24 @@ interface Authenticatable {
     role: string;
 }
 
-class AuthenticatableUser extends User implements Authenticatable {
+interface AuthenticatableAdmin extends Authenticatable {
+    role: 'admin' | 'superadmin';
+}
+
+class AuthenticatableUser implements Authenticatable {
 
     public role;
 
     constructor (public email: string, public password: string) {
-        super();
         this.role = "User";
     }
 
     login() {}
     logout() {}
+}
+
+function authenticate(user: Authenticatable) {
+    // ...
 }
 
 let user: Authenticatable;
