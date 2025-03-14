@@ -10,7 +10,7 @@
 
 // Alternative
 class User {
-    public hobbies: string[] = [];
+    readonly hobbies: string[] = [];
 
     constructor (private name: string, public age: number) {}
 
@@ -26,3 +26,6 @@ console.log(afonso, fred);
 
 fred.age = 33;
 fred.greet();
+
+// afonso.hobbies = ["sports"]; // Doesn't work
+afonso.hobbies.push("sports");
