@@ -13,3 +13,12 @@ store.isOpen = false;
 let roles = ['admin', 'guest', 'editor'] as const;
 // roles.push("max"); // Doesn't work
 const firstRole = roles[0];
+
+// satisfies infers a more specific type as long as it satisfies the more broad type
+const dataEntries = {
+    entry1: 0.51,
+    entry2: -1.23
+} satisfies Record<string, number>;
+
+dataEntries.entry2;
+//dataEntries.entry3; // Doesn't work
