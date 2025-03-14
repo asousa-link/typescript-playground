@@ -46,3 +46,20 @@ class Employee extends User {
         console.log(this._firstName);
     }
 }
+
+abstract class UIElement {
+    constructor (public identifier: string) {}
+
+    clone(targetLocation: string) {
+        // logic to duplicate UI element
+    }
+}
+
+class SideDrawerElement extends UIElement {
+    constructor (public identifier: string, public position: 'left' | 'right') {
+        super(identifier);
+    }
+}
+
+// let uiElement = new UIElement(); // Doesn't work
+let sidedrawer = new SideDrawerElement("sidedrawer", "right");
