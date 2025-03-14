@@ -2,6 +2,19 @@ interface Authenticatable {
     email: string;
     password: string;
 
-    login(email: string, password: string): void;
+    login(): void;
     logout(): void;
+}
+
+let user: Authenticatable;
+
+user = {
+    email: "test@example.com",
+    password: "abc1",
+    login() {
+        // ...
+    },
+    logout() {
+        // ...
+    }
 }
