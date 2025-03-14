@@ -1,6 +1,6 @@
 class User {
-    private _firstName = "";
-    private _lastName = "";
+    protected _firstName = "";
+    protected _lastName = "";
 
     set firstName(name: string) {
         if (name.trim() === "") {
@@ -43,6 +43,6 @@ class Employee extends User {
     }
 
     work() {
-
+        console.log(this._firstName);
     }
 }
