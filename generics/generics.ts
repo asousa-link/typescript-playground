@@ -24,3 +24,10 @@ function mergeObj<T extends object, U extends object>(a: T, b: U) {
 
 const merged = mergeObj({ userName: "Afonso" }, { age: 31 });
 console.log(merged);
+
+class User<T> {
+    constructor (public id: T) {}
+}
+
+const user = new User(1);
+const user2 = new User("a");
