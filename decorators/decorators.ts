@@ -31,15 +31,22 @@ function autobind(target: Function, ctx: ClassMethodDecoratorContext) {
 function fieldLogger(target: undefined, ctx: ClassFieldDecoratorContext) {
   console.log(target);
   console.log(ctx);
+}
 
-  return (initialValue: any) => {
-    console.log(initialValue);
-    return initialValue + " Sousa";
+function replacer<T>(initValue: T) {
+  return function decorator(
+    target: undefined,
+    ctx: ClassFieldDecoratorContext
+  ) {
+    return () => {
+      return initValue;
+    };
   };
 }
 
 @logger
 class Person {
+  @replacer("Andreia")
   @fieldLogger
   name = "Afonso";
 
