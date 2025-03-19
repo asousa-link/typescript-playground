@@ -27,8 +27,20 @@ function autobind(target: Function, ctx: ClassMethodDecoratorContext) {
   };
 }
 
+// field decorators must have an undefined target because they are executed before the target has finished loading
+function fieldLogger(target: undefined, ctx: ClassFieldDecoratorContext) {
+  console.log(target);
+  console.log(ctx);
+
+  return (initialValue: any) => {
+    console.log(initialValue);
+    return initialValue + " Sousa";
+  };
+}
+
 @logger
 class Person {
+  @fieldLogger
   name = "Afonso";
 
   @autobind
