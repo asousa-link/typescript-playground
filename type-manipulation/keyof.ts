@@ -15,6 +15,9 @@ function getProp<T extends object, U extends keyof T>(obj: T, key: U) {
     return val;
 }
 
+const data = { id: 1, isStored: false, values: [1, -5, 10] };
+const isStored = getProp(data, "isStored");
+
 const user = { name: "Afonso", age: 31 };
 
 const val = getProp(user, "age");
