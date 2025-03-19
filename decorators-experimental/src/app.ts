@@ -1,11 +1,13 @@
 // Decorators are executed when the class is defined,
 // NOT when it's instantiated!
-function Logger(constructor: Function) {
-  console.log("Logging...");
-  console.log(constructor);
+function Logger(logString: string = "Logging...") {
+  return function (constructor: Function) {
+    console.log(logString);
+    console.log(constructor);
+  };
 }
 
-@Logger
+@Logger("LOGGING - PERSON")
 class Person {
   name = "Afonso";
 
