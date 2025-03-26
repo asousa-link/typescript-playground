@@ -1,42 +1,58 @@
 import axios from "axios";
 
+declare const L: any;
+const ZOOM = 13;
+
 const form = document.querySelector("form")!;
 const addressInput = document.getElementById("address")! as HTMLInputElement;
+const map = L.map("map");
 
 function searchAddressHandler(event: Event) {
   event.preventDefault();
   const enteredAddress = addressInput.value;
 
-  type OSMGeocodingResponse = {
-    // place_id: number;
-    // licence: string;
-    // osm_type: string;
-    // osm_id: number;
-    lat: string;
-    lon: string;
-    // class: string;
-    // type: string;
-    // place_rank: number;
-    // importance: number;
-    // addresstype: string;
-    name: string;
-    display_name: string;
-    boundingbox: string[];
-  }[];
+  type NominatimGeocodingResponse = {
+    features: {
+      geometry: { coordinates: { lat: Number; lng: Number }[] };
+      properties: {
+        geocoding: { label: String };
+      };
+    }[];
+    status: 200;
+  };
 
   axios
-    .get<OSMGeocodingResponse>(
+    .get<NominatimGeocodingResponse>(
       `https://nominatim.openstreetmap.org/search?q=${encodeURI(
         enteredAddress
-      )}&format=json`
+      )}&format=geocodejson&limit=1`
     )
     .then((response) => {
-      const data = response.data[0];
-      const lat = data.lat;
-      const long = data.lon;
+      console.log(response);
+      if (!response.data.features.length) {
+        throw new Error("Could not fetch location!");
+      }
 
-      const coordinates = { lat: lat, long: long };
-      console.log(`COORDINATES: ${coordinates.lat} ${coordinates.long}`);
+      const coordinates = [
+        response.data.features[0].geometry.coordinates[1],
+        response.data.features[0].geometry.coordinates[0],
+      ];
+
+      const location = {
+        label: response.data.features[0].properties.geocoding.label,
+      };
+
+      map.setView(coordinates, ZOOM);
+
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      L.marker(coordinates)
+        .addTo(map)
+        .bindPopup(`${location.label}`)
+        .openPopup();
     })
     .catch((err) => {
       console.log(err);
