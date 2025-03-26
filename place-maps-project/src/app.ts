@@ -7,8 +7,25 @@ function searchAddressHandler(event: Event) {
   event.preventDefault();
   const enteredAddress = addressInput.value;
 
+  type OSMGeocodingResponse = {
+    // place_id: number;
+    // licence: string;
+    // osm_type: string;
+    // osm_id: number;
+    lat: string;
+    lon: string;
+    // class: string;
+    // type: string;
+    // place_rank: number;
+    // importance: number;
+    // addresstype: string;
+    name: string;
+    display_name: string;
+    boundingbox: string[];
+  }[];
+
   axios
-    .get(
+    .get<OSMGeocodingResponse>(
       `https://nominatim.openstreetmap.org/search?q=${encodeURI(
         enteredAddress
       )}&format=json`
@@ -19,6 +36,7 @@ function searchAddressHandler(event: Event) {
       const long = data.lon;
 
       const coordinates = { lat: lat, long: long };
+      console.log(`COORDINATES: ${coordinates.lat} ${coordinates.long}`);
     })
     .catch((err) => {
       console.log(err);
